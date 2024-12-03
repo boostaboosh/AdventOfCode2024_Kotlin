@@ -1,0 +1,40 @@
+Consider the following section of corrupted memory:
+
+xmul(2,4)%&mul[3,7]!@^do_not_mul(5,5)+mul(32,64]then(mul(11,8)mul(8,5))
+
+Only the four highlighted sections are real mul instructions. 
+mul(2,4)
+mul(5,5)
+mul(11,8)
+mul(8,5)
+Adding up the result of each instruction produces 161 (2*4 + 5*5 + 11*8 + 8*5).
+
+Scan the corrupted memory for uncorrupted mul instructions. 
+What do you get if you add up all of the results of the multiplications?
+
+step 1 understand the problem
+
+inputs
+1) a line of text
+desired outputs
+1) the sum of the result of each multiplication instruction
+
+step 2 work out an example of the problem by hand
+
+1)
+input: 
+dinul(3,3)lid%&mul[3,7]!@^do_not_mul(5,5)+mul(32,64)th
+output:
+5*5 + 32*64 == 2073
+
+step 3 write a pseudocode algorithm for solving the problem
+
+total = 0
+inputSequenceToMatch = sequence mul(d,d) where d is an integer value
+while there are more sequences of characters that match the inputSequenceToMatch in the input:
+    mulInstruction = next sequence of chars that matches the inputSequenceToMatch
+    firstOperand = mulInstruction.charAt(4) to integer
+    secondOperand = mulInstruction.charAt(6) to integer
+    result = firstOperand * secondOperand
+    total = total + result
+output total

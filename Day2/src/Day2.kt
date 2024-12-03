@@ -66,7 +66,7 @@ class Day2 {
     }
     
     fun processInput() {
-        while (fileReader.hasNextLine()) {
+        while (this.fileReader.hasNextLine()) {
             processLine(fileReader.nextLine())
         }
     }
